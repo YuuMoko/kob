@@ -5,13 +5,11 @@
 <script>
 import ContentField from '../../../components/ContentField.vue'
 
-export default{
+export default {
     components: {
         ContentField
     }
 }
 </script>
 
-<style scpoed>
-
-</style>
+<style scpoed></style>

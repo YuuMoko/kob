@@ -1,8 +1,8 @@
 <template>
-    <NavBar></NavBar>
-    <router-view></router-view>
+  <NavBar></NavBar>
+  <router-view></router-view>
 </template>
-  
+
 <script>
 import NavBar from './components/NavBar.vue';
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,34 +14,8 @@ export default {
   },
 
   setup() {
-    $.ajax({
-      url: "http://127.0.0.1:3000/user/account/token/",
-      type: "post",
-      data:{
-        username: 'yxc',
-        password: 'pyxc',
-      },
-      success(resp) {
-        console.log(resp);
-      },
-      error(resp) {
-        console.log(resp);
-      }
-    });
 
-    $.ajax({
-      url: "http://127.0.0.1:3000/user/account/info/",
-      type: "get",
-      headers: {
-        Authorization: "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4MDA4YTdmYzQwMTM0YzNhOTE1Nzk1MDEwYWQ4NjQwOSIsInN1YiI6IjEiLCJpc3MiOiJzZyIsImlhdCI6MTcxODE3MzcwNywiZXhwIjoxNzE5MzgzMzA3fQ.LpcmvWLLkhUyayfIv9awV7tGng_nXPEo8hrNHYgNdpw"
-      },
-      success(resp) {
-        console.log(resp);
-      },
-      error(resp){
-        console.log(resp);
-      }      
-    })
+
 
     $.ajax({
       url: "http://127.0.0.1:3000/user/account/register/",
@@ -51,12 +25,12 @@ export default {
         password: "123",
         confirmedPassword: "123",
       },
-      success(resp){
-      console.log(resp)
-    },
-      error(resp){
-      console.log(resp)
-    }
+      success(resp) {
+        console.log(resp)
+      },
+      error(resp) {
+        console.log(resp)
+      }
     })
   }
 }

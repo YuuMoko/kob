@@ -39,7 +39,7 @@ const routes = [
     component: UserAccountLoginView,
   },
   {
-    path: '/user/account/register',
+    path: '/user/account/register/',
     name: "user_account_register",
     component: UserAccountRegisterView,
   },
@@ -52,7 +52,6 @@ const routes = [
     path: "/:catchAll(.*)",
     redirect: "/404/"
   }
-
 ]
 
 const router = createRouter({
