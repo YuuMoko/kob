@@ -1,11 +1,11 @@
 <template>
     <div ref="parent" class="gamemap">
-        <canvas ref="canvas" tabindex="0"></canvas>
+        <canvas ref="canvas" tabindex="0" style="outline: none;"></canvas>
     </div>
 </template>
 
 <script>
-import { GameMap } from "@/assets/scripts/GameMap" ;
+import { GameMap } from "@/assets/scripts/GameMap";
 import { ref, onMounted } from 'vue'
 
 export default {
@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped>
-div.gamemap{
+div.gamemap {
     width: 100%;
     height: 100%;
     display: flex;
