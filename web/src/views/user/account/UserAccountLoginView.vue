@@ -82,7 +82,7 @@ export default {
 }
 </script>
 
-<style scpoed>
+<style scoped>
 button {
     width: 100%
 }
