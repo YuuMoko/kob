@@ -13,7 +13,7 @@ export class GameMap extends AcGameObject {
         this.rows = 13;
         this.cols = 14;
 
-        this.inner_walls_count = 30;
+        this.inner_walls_count = 20;
 
         this.walls = [];
 
@@ -24,8 +24,6 @@ export class GameMap extends AcGameObject {
             new Snake({ id: 1, color: "#F94848", r: 1, c: this.cols - 2 }, this),
         ];
 
-        this.eye_directrion = 0;
-        if (this.id === 1) this.eye_directrion = 2; // 左下角的蛇初始朝上，右上角的蛇初始朝下
 
     }
 

@@ -105,7 +105,7 @@
                                                             <VAceEditor v-model:value="bot.content" @init="editorInit"
                                                                 lang="c_cpp" theme="textmate" style="height: 300px"
                                                                 :options="{
-                                                                    enableBasicAutocompletion: true, 
+                                                                    enableBasicAutocompletion: true,
                                                                     enableSnippets: true, 
                                                                     enableLiveAutocompletion: true, 
                                                                     fontSize: 18, 
