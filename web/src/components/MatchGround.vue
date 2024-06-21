@@ -1,7 +1,7 @@
 <template>
     <div class="matchground">
         <div class="row">
-            <dir class="col-6">
+            <div class="col-6">
                 <div class="user-photo">
                     <img :src="$store.state.user.photo" alt="">
                 </div>
@@ -10,7 +10,7 @@
                     {{ $store.state.user.username }}
                 </div>
 
-            </dir>
+            </div>
             <div class="col-6">
                 <div class="user-photo">
                     <img :src="$store.state.pk.opponent_photo" alt="">
@@ -22,7 +22,7 @@
             </div>
 
             <div class="col-12" style="text-align: center; padding-top: 15vh;">
-                <button type="button" class="btn btn-warning btn-lg" @click="click_match">{{ match_btn_info }}</button>
+                <button type="button" class="btn btn-warning btn-lg" @click="click_match_btn">{{ match_btn_info }}</button>
             </div>
         </div>
     </div>
@@ -38,11 +38,11 @@ export default {
         const store = useStore();
         let match_btn_info = ref("开始匹配");
 
-        const click_match = () => {
+        const click_match_btn = () => {
             if (match_btn_info.value === "开始匹配") {
                 match_btn_info.value = "取消";
                 store.state.pk.socket.send(JSON.stringify({
-                    event: "strat-matching",
+                    event: "start-matching",
                 }));
             }
             else {
@@ -55,7 +55,7 @@ export default {
 
         return {
             match_btn_info,
-            click_match,
+            click_match_btn,
     }
     }
 }
