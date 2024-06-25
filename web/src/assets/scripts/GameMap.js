@@ -28,8 +28,6 @@ export class GameMap extends AcGameObject {
     create_walls() {
         const g = this.store.state.pk.gamemap;
 
-        console.log(g);
-
         // 将g数组内的障碍物填充到图里
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++)
@@ -43,17 +41,19 @@ export class GameMap extends AcGameObject {
 
     add_listening_events() {
         this.ctx.canvas.focus();
-
-        const [snake0, snake1] = this.snakes;
         this.ctx.canvas.addEventListener("keydown", e => {
-            if (e.key === 'w') snake0.set_directrion(0);
-            else if (e.key === 'd') snake0.set_directrion(1);
-            else if (e.key === 's') snake0.set_directrion(2);
-            else if (e.key === 'a') snake0.set_directrion(3);
-            else if (e.key === 'ArrowUp') snake1.set_directrion(0);
-            else if (e.key === 'ArrowRight') snake1.set_directrion(1);
-            else if (e.key === 'ArrowDown') snake1.set_directrion(2);
-            else if (e.key === 'ArrowLeft') snake1.set_directrion(3);
+            let d = - 1;
+            if (e.key === 'w') d = 0;
+            else if (e.key === 'd') d = 1;
+            else if (e.key === 's') d = 2;
+            else if (e.key === 'a') d = 3;
+
+            if (d >= 0) {
+                this.store.state.pk.socket.send(JSON.stringify({
+                    event: "move",
+                    direction: d,
+                }));
+            }
         });
     }
 

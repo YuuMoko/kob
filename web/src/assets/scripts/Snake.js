@@ -44,7 +44,7 @@ export class Snake extends AcGameObject {
 
     }
 
-    set_directrion(d) { // 作为蛇移动的接口，使得蛇的移动不一定由单独的形式触发，可以由AI，键盘，其他玩家触发
+    set_direction(d) { // 作为蛇移动的接口，使得蛇的移动不一定由单独的形式触发，可以由AI，键盘，其他玩家触发
         this.direction = d;
     }
 
@@ -64,15 +64,10 @@ export class Snake extends AcGameObject {
         this.step++;
 
         const k = this.cells.length;
-        for (let i = k; i > 0; i--)
+        for (let i = k; i > 0; i--) {
             this.cells[i] = JSON.parse(JSON.stringify(this.cells[i - 1]));
-
-        if (!this.gamemap.check_valid(this.next_cell)) { // 下一步操作非法，蛇直接去世
-            this.status = "die";
-
         }
-
-
+        
     }
 
     update_move() {
