@@ -76,11 +76,11 @@ export default{
             }
             pages.value = new_pages;
         }
-
+        console.log(store.state.url.DomainName);
         const pull_page = page => {
             current_page = page;
             $.ajax({
-                url: "https://app6077.acapp.acwing.com.cn/api/ranklist/getlist/",
+                url: `${store.state.url.DomainName}/api/ranklist/getlist/`,
                 data: {
                     page,
                 },

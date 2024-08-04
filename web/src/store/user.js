@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import Url from './url'
 
 export default {
     state: {
@@ -35,7 +36,7 @@ export default {
     actions: {
         login(context, data) {
             $.ajax({
-                url: "https://app6077.acapp.acwing.com.cn/api/user/account/token/",
+                url: `${Url.state.DomainName}/api/user/account/token/`,
                 type: "post",
                 data: {
                     username: data.username,
@@ -57,7 +58,7 @@ export default {
         },
         getinfo(context, data) {
             $.ajax({
-                url: "https://app6077.acapp.acwing.com.cn/api/user/account/info/",
+                url: `${Url.state.DomainName}/api/user/account/info/`,
                 type: "get",
                 headers: {
                     Authorization: "Bearer " + context.state.token,

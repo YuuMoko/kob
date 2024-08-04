@@ -31,6 +31,7 @@ import ContentField from '../../../components/ContentField.vue';
 import { ref } from 'vue';
 import router from '../../../router/index';
 import $ from "jquery";
+import { useStore } from 'vuex'
 
 export default {
     components: {
@@ -41,10 +42,11 @@ export default {
         let password = ref('');
         let confirmedPassword = ref('');
         let error_message = ref('');
+        const store = useStore();
 
         const register = () => {
             $.ajax({
-                url: "https://app6077.acapp.acwing.com.cn/api/user/account/register/",
+                url: `${store.stateu.url.DomainName}/api/user/account/register/`,
                 type: "post",
                 data: {
                     username: username.value,
