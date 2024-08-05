@@ -67,7 +67,7 @@ public class Bot implements java.util.function.Supplier<Integer> {
         int[] r = {0, 1, 2, 3};
 
 
-        
+
         for (int i = 0; i < 4; i ++){
             Random random = new Random();
             int rand = random.nextInt(i + 1);
