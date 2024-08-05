@@ -7,6 +7,7 @@ import UserBotIndexView from '../views/user/bot/UserBotindexView'
 import NotFound from '../views/error/NotFound'
 import UserAccountLoginView from '../views/user/account/UserAccountLoginView.vue'
 import UserAccountRegisterView from '../views/user/account/UserAccountRegisterView.vue'
+import ExplainView from '../views/explain/ExplainView.vue'
 import store from '../store/index'
 
 
@@ -17,6 +18,14 @@ const routes = [
     redirect: "/pk/",
     meta: {
       requestAuth: true
+    }
+  },
+  {
+    path: "/explain/",
+    name: 'explain_index',
+    component: ExplainView,
+    meta: {
+      requestAuth: false,
     }
   },
   {

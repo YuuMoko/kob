@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="add-bot-code" class="form-label">代码</label>
-                                            <VAceEditor v-model:value="botadd.content" @init="editorInit" lang="c_cpp"
+                                            <VAceEditor v-model:value="botadd.content" @init="editorInit" lang="java"
                                                 theme="textmate" style="height: 300px" :options="{
                                                     enableBasicAutocompletion: true,
                                                     enableSnippets: true, 
@@ -103,7 +103,7 @@
                                                         <div class="mb-3">
                                                             <label for="add-bot-code" class="form-label">代码</label>
                                                             <VAceEditor v-model:value="bot.content" @init="editorInit"
-                                                                lang="c_cpp" theme="textmate" style="height: 300px"
+                                                                lang="java" theme="textmate" style="height: 300px"
                                                                 :options="{
                                                                     enableBasicAutocompletion: true,
                                                                     enableSnippets: true, 
@@ -143,6 +143,7 @@ import { Modal } from "bootstrap/dist/js/bootstrap";
 import { VAceEditor } from 'vue3-ace-editor';
 import ace from 'ace-builds';
 import 'ace-builds/src-noconflict/mode-c_cpp';
+import 'ace-builds/src-noconflict/mode-java';
 import 'ace-builds/src-noconflict/mode-json';
 import 'ace-builds/src-noconflict/theme-chrome';
 import 'ace-builds/src-noconflict/ext-language_tools';
@@ -274,7 +275,7 @@ export default {
 }
 </script>
 
-<style scpoed>
+<style scoped>
 div.error-message {
     color: red;
 }
