@@ -19,6 +19,12 @@ export default {
             state.photo = user.photo;
             state.is_login = user.is_login;
         },
+        updateUsername(state, username) {
+            state.username = username;
+        },
+        updatePhoto(state, photo) {
+            state.photo = photo;
+        },
         updateToken(state, token) {
             state.token = token;
         },

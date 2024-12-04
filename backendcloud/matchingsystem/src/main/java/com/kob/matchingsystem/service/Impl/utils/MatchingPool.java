@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
 
 @Component
@@ -79,6 +80,12 @@ public class MatchingPool extends Thread {
             for (int j = i + 1; j < players.size(); j ++) {
                 if (used[j]) continue;
                 Player a = players.get(i), b = players.get(j);
+
+                if (Objects.equals(a.getUserId(), b.getUserId())) // 如果两个用户是同一个人，那就不匹配到一起
+                {
+                    used[j] = true;
+                    continue;
+                }
                 if (checkMatched(a, b)) {
                     used[i] = used[j] = true;
                     sendResult(a, b);

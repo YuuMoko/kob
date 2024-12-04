@@ -46,7 +46,7 @@ export default {
 
         const register = () => {
             $.ajax({
-                url: `${store.stateu.url.DomainName}/api/user/account/register/`,
+                url: `${store.state.url.DomainName}/api/user/account/register/`,
                 type: "post",
                 data: {
                     username: username.value,

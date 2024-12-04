@@ -8,6 +8,7 @@ import NotFound from '../views/error/NotFound'
 import UserAccountLoginView from '../views/user/account/UserAccountLoginView.vue'
 import UserAccountRegisterView from '../views/user/account/UserAccountRegisterView.vue'
 import ExplainView from '../views/explain/ExplainView.vue'
+import UserinfoView from '../views/userinfo/UserinfoView.vue'
 import store from '../store/index'
 
 
@@ -21,11 +22,19 @@ const routes = [
     }
   },
   {
+    path: "/userinfo/",
+    name: 'userinfo_index',
+    component: UserinfoView,
+    meta: {
+      requestAuth: true,
+    }
+  },
+  {
     path: "/explain/",
     name: 'explain_index',
     component: ExplainView,
     meta: {
-      requestAuth: false,
+      requestAuth: true,
     }
   },
   {
