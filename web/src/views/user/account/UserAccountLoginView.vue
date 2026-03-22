@@ -4,16 +4,16 @@
             <div class="col-3">
                 <form @submit.prevent="login">
                     <div class="mb-3">
-                        <label for="username" class="form-label">用户名</label>
-                        <input v-model="username" type="text" class="form-control" id="username" placeholder="请输入用户名">
+                        <label for="username" class="form-label">Username</label>
+                        <input v-model="username" type="text" class="form-control" id="username" placeholder="Please enter username">
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">密码</label>
+                        <label for="password" class="form-label">Password</label>
                         <input v-model="password" type="password" class="form-control" id="password"
-                            placeholder="请输入密码">
+                            placeholder="Please enter password">
                     </div>
                     <div class="error-message">{{ error_message }}</div>
-                    <button type="submit" class="btn btn-primary ">登录</button>
+                    <button type="submit" class="btn btn-primary ">Login</button>
 
                 </form>
             </div>
@@ -67,7 +67,7 @@ export default {
                     })
                 },
                 error() {
-                    error_message.value = "用户名或密码错误";
+                    error_message.value = "Invalid username or password";
                 }
             })
         }

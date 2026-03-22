@@ -35,38 +35,38 @@ public class AddServiceImpl implements AddService {
         Map<String, String> map = new HashMap<>();
 
         if (title == null || title.length() == 0) {
-            map.put("error_message", "标题不能为空");
+            map.put("error_message", "Title cannot be empty");
             return map;
         }
 
         if (title.length() > 100) {
-            map.put("error_message", "标题长度不能大于100");
+            map.put("error_message", "Title length cannot exceed 100");
             return map;
         }
 
         if (description == null || description.length() == 0) {
-            description = "这个用户很懒，什么也没留下~";
+            description = "This user left nothing here~";
         }
 
         if (description.length() > 300) {
-            map.put("error_message", "Bot描述的长度不能大于300");
+            map.put("error_message", "Bot description cannot exceed 300 characters");
             return map;
         }
 
         if (content == null || content.length() == 0) {
-            map.put("error_message", "代码不能为空");
+            map.put("error_message", "Code cannot be empty");
             return map;
         }
 
         if (content.length() > 10000) {
-            map.put("error_message", "代码长度不能超过10000");
+            map.put("error_message", "Code length cannot exceed 10000");
             return map;
         }
 
         QueryWrapper<Bot> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("user_id", user.getId());
         if (botMapper.selectCount(queryWrapper) >= 10) {
-            map.put("error_message", "每个用户最多只能创建十个Bot！");
+            map.put("error_message", "Each user can create at most 10 bots!");
             return map;
         }
 

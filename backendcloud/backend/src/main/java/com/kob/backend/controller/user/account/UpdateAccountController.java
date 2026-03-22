@@ -7,11 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -33,6 +28,19 @@ public class UpdateAccountController {
         Integer id = Integer.parseInt(data.get("id"));
         String photo = data.get("photo");
         return updateService.updatePhoto(id, photo);
+    }
+
+    @PostMapping("/api/user/account/upload/photo/")
+    public Map<String, String> uploadPhoto(@RequestParam("file") MultipartFile file) {
+        return updateService.uploadPhoto(file);
+    }
+
+    @PostMapping("/api/user/account/update/password/")
+    public Map<String, String> updatePassword(@RequestParam Map<String, String> data) {
+        String oldPassword = data.get("old_password");
+        String newPassword = data.get("new_password");
+        String confirmedPassword = data.get("confirmed_password");
+        return updateService.updatePassword(oldPassword, newPassword, confirmedPassword);
     }
 
 }

@@ -1,16 +1,16 @@
 <template>
     <ContentField>
         <div>
-            <h3 style="font-style:italic; font-weight: 1000;" >游戏规则:</h3>
+            <h3 style="font-style:italic; font-weight: 1000;" >Game Rules:</h3>
             <hr>
             <div>
-                <div>在<p class="stress">对战页</p>当中点击<div class="stress">开始匹配</div>即可开始游戏</div>
-                <div>在<p class="stress">我的Bot</p>页面创造出了<p class="stress">Bot</p>之后，可以在开始匹配按钮上方的<p class="stress">选择按钮</p>上进行选择要出战的AI，选择<p class="stress">亲自出马</p>即代表玩家亲自操作</div>
-                <div><p class="stress">操作方式:</p>WASD，控制上下左右四个方向，每回合有5秒的可后悔选择时间，时间结束后，玩家的蛇会朝着玩家按下的最后一个方向进行移动，若不进行选择，则直接判负</div>
-                <div>开始时，玩家会被随机分配到左下角和右下角两个方向，<p class="stress">地图最下方</p>会标识玩家的初始位置</div>
+                <div>On the <p class="stress">Battle</p> page, click <div class="stress">Start Matching</div> to begin the game.</div>
+                <div>After creating a <p class="stress">Bot</p> on the <p class="stress">My Bots</p> page, you can select which AI to use via the <p class="stress">dropdown</p> above the match button. Choose <p class="stress">Play Myself</p> to control the snake manually.</div>
+                <div><p class="stress">Controls:</p> Use WASD for up, down, left, and right. You have 5 seconds each round to choose a direction; after that, the snake moves in the last direction you pressed. If you make no choice, you lose.</div>
+                <div>At the start, you are randomly placed at the bottom-left or bottom-right. Your position is shown at the <p class="stress">bottom of the map</p>.</div>
             </div>
             <hr>
-            <h3 style="font-style:italic; font-weight: 1000;" >样例代码:</h3>
+            <h3 style="font-style:italic; font-weight: 1000;" >Sample Code:</h3>
             <div>
                 <VAceEditor v-model:value="content" @init="editorInit"
                                                                 lang="java" theme="textmate" style="height: 1765px"

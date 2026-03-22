@@ -17,7 +17,7 @@
             class="form-select"
             aria-label="Default select example"
           >
-            <option value="-1" selected>亲自出马</option>
+            <option value="-1" selected>Play Myself</option>
             <option v-for="bot in bots" :key="bot.id" :value="bot.id">
               {{ bot.title }}
             </option>
@@ -51,13 +51,13 @@ import $ from "jquery";
 export default {
   setup() {
     const store = useStore();
-    let match_btn_info = ref("开始匹配");
+    let match_btn_info = ref("Start Matching");
     let bots = ref([]);
     let select_bot = ref("-1");
 
     const click_match_btn = () => {
-      if (match_btn_info.value === "开始匹配") {
-        match_btn_info.value = "取消";
+      if (match_btn_info.value === "Start Matching") {
+        match_btn_info.value = "Cancel";
         store.state.pk.socket.send(
           JSON.stringify({
             event: "start-matching",
@@ -65,7 +65,7 @@ export default {
           })
         );
       } else {
-        match_btn_info.value = "开始匹配";
+        match_btn_info.value = "Start Matching";
         store.state.pk.socket.send(
           JSON.stringify({
             event: "stop-matching",

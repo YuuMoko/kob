@@ -9,7 +9,7 @@
       parseInt($store.state.user.id) === parseInt($store.state.pk.a_id)
     "
   >
-    左下角
+    Bottom Left
   </div>
   <div
     class="user-color"
@@ -18,7 +18,7 @@
       parseInt($store.state.user.id) === parseInt($store.state.pk.b_id)
     "
   >
-    右上角
+    Top Right
   </div>
 </template>
 
@@ -45,7 +45,7 @@ export default {
     let socket = null;
     onMounted(() => {
       store.commit("updateOpponent", {
-        username: "我的对手",
+        username: "My Opponent",
         photo:
           "https://cdn.acwing.com/media/article/image/2022/08/09/1_1db2488f17-anonymous.png",
       });

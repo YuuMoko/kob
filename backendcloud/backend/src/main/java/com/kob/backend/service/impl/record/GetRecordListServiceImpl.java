@@ -41,9 +41,9 @@ public class GetRecordListServiceImpl implements GetRecordListService {
             item.put("a_username", userA.getUsername());
             item.put("b_photo", userB.getPhoto());
             item.put("b_username", userB.getUsername());
-            String result = "平局";
-            if ("A".equals(record.getLoser())) result = "B胜";
-            if ("B".equals(record.getLoser())) result = "A胜";
+            String result = "Draw";
+            if ("A".equals(record.getLoser())) result = "B Wins";
+            if ("B".equals(record.getLoser())) result = "A Wins";
             item.put("result", result);
             item.put("record", record);
             items.add(item);

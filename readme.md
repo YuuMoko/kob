@@ -1,1 +1,1 @@
-### 一个贪吃蛇对战游戏网站
+### A Snake Battle Game Website

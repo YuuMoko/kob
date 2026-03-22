@@ -3,8 +3,8 @@
         <table class="table table-striped table-hover" style="text-align: center;">
             <thead>
                 <tr>
-                    <th>玩家</th>
-                    <th>天梯分</th>
+                    <th>Player</th>
+                    <th>Rating</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +21,7 @@
         <nav aria-label="..." style="float: right">
             <ul class="pagination">
               <li class="page-item" @click="click_page(-2)">
-                <a class="page-link" herf="#">前一页</a>
+                <a class="page-link" herf="#">Previous</a>
             </li>
 
             <li :class="'page-item ' + page.is_acctive" v-for="page in pages" :key="page.number" @click="click_page(page.number)">
@@ -29,7 +29,7 @@
             </li>
             
             <li class="page-item" @click="click_page(-1)">
-                <a class="page-link" href="#">后一页</a>
+                <a class="page-link" href="#">Next</a>
             </li>
             </ul>
           </nav>

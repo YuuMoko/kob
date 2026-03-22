@@ -26,35 +26,35 @@ public class RegisterServiceImpl implements RegisterService {
     public Map<String, String> register(String username, String password, String confirmedPassword) {
         Map<String, String> map = new HashMap<>();
         if (username == null) {
-            map.put("error_message", "用户名不能为空");
+            map.put("error_message", "Username cannot be empty");
             return map;
         }
         if (password == null || confirmedPassword == null) {
-            map.put("error_message", "密码不能为空");
+            map.put("error_message", "Password cannot be empty");
             return map;
         }
         username = username.trim();
         if (username.length() == 0) {
-            map.put("error_message", "用户名不能为空");
+            map.put("error_message", "Username cannot be empty");
             return map;
         }
 
         if (password.length() == 0 || confirmedPassword.length() == 0) {
-            map.put("error_message", "密码不能为空");
+            map.put("error_message", "Password cannot be empty");
             return map;
         }
 
         if (username.length() > 100){
-            map.put("error_message", "用户名长度不能大于100");
+            map.put("error_message", "Username length cannot exceed 100");
             return map;
         }
         if (password.length() > 100 || confirmedPassword.length() > 100) {
-            map.put("error_message", "密码长度不能大于100");
+            map.put("error_message", "Password length cannot exceed 100");
             return map;
         }
 
         if (!password.equals(confirmedPassword)) {
-            map.put("error_message", "两次输入的密码不一致");
+            map.put("error_message", "Passwords do not match");
             return map;
         }
 
@@ -63,7 +63,7 @@ public class RegisterServiceImpl implements RegisterService {
 
         List<User> users = userMapper.selectList(queryWrapper);
         if (!users.isEmpty()) {
-            map.put("error_message", "用户名已存在");
+            map.put("error_message", "Username already exists");
             return map;
         }
 

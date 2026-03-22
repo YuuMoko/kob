@@ -4,21 +4,21 @@
             <div class="col-3">
                 <form @submit.prevent="register">
                     <div class="mb-3">
-                        <label for="username" class="form-label">用户名</label>
-                        <input v-model="username" type="text" class="form-control" id="username" placeholder="请输入用户名">
+                        <label for="username" class="form-label">Username</label>
+                        <input v-model="username" type="text" class="form-control" id="username" placeholder="Please enter username">
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">密码</label>
+                        <label for="password" class="form-label">Password</label>
                         <input v-model="password" type="password" class="form-control" id="password"
-                            placeholder="请输入密码">
+                            placeholder="Please enter password">
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">确认密码</label>
+                        <label for="password" class="form-label">Confirm Password</label>
                         <input v-model="confirmedPassword" type="password" class="form-control" id="confirmedPassword"
-                            placeholder="请再次输入密码">
+                            placeholder="Please enter password again">
                     </div>
                     <div class="error-message">{{ error_message }}</div>
-                    <button type="submit" class="btn btn-primary ">注册</button>
+                    <button type="submit" class="btn btn-primary ">Register</button>
 
                 </form>
             </div>

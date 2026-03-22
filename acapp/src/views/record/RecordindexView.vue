@@ -5,9 +5,9 @@
                 <tr>
                     <th>A</th>
                     <th>B</th>
-                    <th>对战结果</th>
-                    <th>对战时间</th>
-                    <th>操作</th>
+                    <th>Result</th>
+                    <th>Time</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,7 +25,7 @@
                     <td>{{ record.result }}</td>
                     <td>{{ record.record.createtime }}</td>
                     <td>
-                        <button @click="open_record_content(record.record.id)" type="button" class="btn btn-secondary">查看录像</button>
+                        <button @click="open_record_content(record.record.id)" type="button" class="btn btn-secondary">View Replay</button>
                     </td>
                 </tr>
             </tbody>
@@ -33,7 +33,7 @@
         <nav aria-label="..." style="float: right">
             <ul class="pagination">
               <li class="page-item" @click="click_page(-2)">
-                <a class="page-link" herf="#">前一页</a>
+                <a class="page-link" herf="#">Previous</a>
             </li>
 
             <li :class="'page-item ' + page.is_acctive" v-for="page in pages" :key="page.number" @click="click_page(page.number)">
@@ -41,7 +41,7 @@
             </li>
             
             <li class="page-item" @click="click_page(-1)">
-                <a class="page-link" href="#">后一页</a>
+                <a class="page-link" href="#">Next</a>
             </li>
             </ul>
           </nav>
