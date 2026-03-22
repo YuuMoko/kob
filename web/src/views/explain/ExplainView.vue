@@ -69,7 +69,7 @@ public class Bot implements java.util.function.Supplier<Integer> {
         }
     }
 
-    private boolean check_tail_increase(int step) {    // 检查当前回合，蛇的长度是否增加
+    private boolean check_tail_increase(int step) {    // whether snake length increases this step
         if (step <= 10) return true;
         return step % 3 == 1;
     }
@@ -94,8 +94,8 @@ public class Bot implements java.util.function.Supplier<Integer> {
         return res;
     }
 
-    public Integer nextMove(String input) {     // 这是主函数，这个函数返回的值决定了蛇下一步走的方向
-        String[] strs = input.split("#");   // 前十回合蛇的长度每回合都增加，之后，每隔三回合增加一次
+    public Integer nextMove(String input) {     // main entry: return value is next move direction
+        String[] strs = input.split("#");   // length increases every turn for first 10 steps, then every 3 steps
         int[][] g = new int[13][14];
         for (int i = 0, k = 0; i < 13; i ++) {
             for (int j = 0; j < 14; j++, k ++) {
@@ -113,7 +113,7 @@ public class Bot implements java.util.function.Supplier<Integer> {
 
         for (Cell c: aCells) g[c.x][c.y] = 1;
         for (Cell c: bCells) g[c.x][c.y] = 1;
-        // 所有的操作已经提前做好了，g是一个13*14的数组，1表示障碍物或者被蛇的身体，也就是不能走的地方，0表示能走的地方
+        // g is 13x14: 1 = wall or snake body (blocked), 0 = walkable
         int[] dx = {-1, 0, 1, 0}, dy = {0, 1, 0, -1};
 
         int[] r = {0, 1, 2, 3};
@@ -125,8 +125,7 @@ public class Bot implements java.util.function.Supplier<Integer> {
             r[i] = r[rand];
             r[rand] = tmp;
         }
-        // aCells表示你的蛇，这个数组存放了的身体的所有坐标，从数组尾表示蛇的头，数组头表示蛇的尾部。
-        // 而bCells表示敌人的蛇，存放的顺序同上。
+        // aCells: your snake (tail at index 0, head at last index); bCells: opponent, same order
         for (int i = 0; i < 4; i++) {
             int t = r[i];
             int x = aCells.get(aCells.size() - 1).x + dx[t];

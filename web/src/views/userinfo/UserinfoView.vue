@@ -8,10 +8,10 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 <div>
-                                    <div class="fw-bold">个人头像</div>
-                                    <div class="text-muted small">支持 jpg/png/webp 等图片</div>
+                                    <div class="fw-bold">Profile photo</div>
+                                    <div class="text-muted small">Supports jpg, png, webp, and other images</div>
                                 </div>
-                                <span v-if="uploading" class="badge text-bg-primary">上传中</span>
+                                <span v-if="uploading" class="badge text-bg-primary">Uploading</span>
                             </div>
 
                             <div class="avatar-wrap mx-auto mb-3">
@@ -21,16 +21,16 @@
                             <div class="mb-2">
                                 <input class="form-control" type="file" accept="image/*" @change="onPhotoChange">
                                 <div class="form-text" v-if="newPhoto">
-                                    已选择：{{ newPhoto.name }}（{{ prettySize(newPhoto.size) }}）
+                                    Selected: {{ newPhoto.name }} ({{ prettySize(newPhoto.size) }})
                                 </div>
                             </div>
 
                             <div class="d-flex gap-2">
                                 <button class="btn btn-primary flex-fill" @click="uploadPhoto" :disabled="!newPhoto || uploading">
-                                    上传头像
+                                    Upload photo
                                 </button>
                                 <button class="btn btn-outline-secondary" @click="clearSelectedPhoto" :disabled="!newPhoto || uploading">
-                                    清除
+                                    Clear
                                 </button>
                             </div>
                         </div>
@@ -42,8 +42,8 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 <div>
-                                    <div class="fw-bold">账号设置</div>
-                                    <div class="text-muted small">修改昵称与密码</div>
+                                    <div class="fw-bold">Account settings</div>
+                                    <div class="text-muted small">Change display name and password</div>
                                 </div>
                             </div>
 
@@ -53,37 +53,37 @@
 
                             <div class="row g-3">
                                 <div class="col-12">
-                                    <label class="form-label">用户名</label>
+                                    <label class="form-label">Username</label>
                                     <div class="input-group">
-                                        <input class="form-control" v-model="username" type="text" placeholder="请输入新用户名" @keyup.enter="updateUsername">
+                                        <input class="form-control" v-model="username" type="text" placeholder="Enter new username" @keyup.enter="updateUsername">
                                         <button class="btn btn-outline-primary" @click="updateUsername" :disabled="updatingUsername">
-                                            {{ updatingUsername ? '保存中...' : '保存' }}
+                                            {{ updatingUsername ? 'Saving...' : 'Save' }}
                                         </button>
                                     </div>
-                                    <div class="form-text">长度不超过 100，且不能与现有用户名重复。</div>
+                                    <div class="form-text">Up to 100 characters; must be unique.</div>
                                 </div>
 
                                 <div class="col-12"><hr class="my-2"></div>
 
                                 <div class="col-12 col-md-6">
-                                    <label class="form-label">旧密码</label>
-                                    <input class="form-control" v-model="oldPassword" type="password" placeholder="请输入旧密码" @keyup.enter="updatePassword">
+                                    <label class="form-label">Current password</label>
+                                    <input class="form-control" v-model="oldPassword" type="password" placeholder="Enter current password" @keyup.enter="updatePassword">
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <label class="form-label">新密码</label>
-                                    <input class="form-control" v-model="newPassword" type="password" placeholder="请输入新密码" @keyup.enter="updatePassword">
+                                    <label class="form-label">New password</label>
+                                    <input class="form-control" v-model="newPassword" type="password" placeholder="Enter new password" @keyup.enter="updatePassword">
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <label class="form-label">确认新密码</label>
-                                    <input class="form-control" v-model="confirmedPassword" type="password" placeholder="再次输入新密码" @keyup.enter="updatePassword">
+                                    <label class="form-label">Confirm new password</label>
+                                    <input class="form-control" v-model="confirmedPassword" type="password" placeholder="Re-enter new password" @keyup.enter="updatePassword">
                                 </div>
                                 <div class="col-12 col-md-6 d-flex align-items-end">
                                     <button class="btn btn-warning w-100" @click="updatePassword" :disabled="updatingPassword">
-                                        {{ updatingPassword ? '修改中...' : '修改密码' }}
+                                        {{ updatingPassword ? 'Updating...' : 'Change password' }}
                                     </button>
                                 </div>
                                 <div class="col-12">
-                                    <div class="form-text">密码长度不超过 100。修改成功后建议重新登录。</div>
+                                    <div class="form-text">Password up to 100 characters. You may need to sign in again after a successful change.</div>
                                 </div>
                             </div>
                         </div>
@@ -153,13 +153,13 @@ export default {
                 success(resp) {
                     if (resp.error_message === "success") {
                         store.commit("updateUsername", username.value);
-                        setAlert('success', '用户名已更新');
+                        setAlert('success', 'Username updated');
                     } else {
                         setAlert('danger', resp.error_message);
                     }
                 },
                 error() {
-                    setAlert('danger', '请求失败');
+                    setAlert('danger', 'Request failed');
                 },
                 complete() {
                     updatingUsername.value = false;
@@ -209,13 +209,13 @@ export default {
                         store.commit("updatePhoto", resp.photo);
                         photo.value = resp.photo;
                         clearSelectedPhoto();
-                        setAlert('success', '头像已更新');
+                        setAlert('success', 'Photo updated');
                     } else {
                         setAlert('danger', resp.error_message);
                     }
                 },
                 error() {
-                    setAlert('danger', '上传失败');
+                    setAlert('danger', 'Upload failed');
                 },
                 complete() {
                     uploading.value = false;
@@ -244,13 +244,13 @@ export default {
                         oldPassword.value = "";
                         newPassword.value = "";
                         confirmedPassword.value = "";
-                        setAlert('success', '密码已修改');
+                        setAlert('success', 'Password changed');
                     } else {
                         setAlert('danger', resp.error_message);
                     }
                 },
                 error() {
-                    setAlert('danger', '请求失败');
+                    setAlert('danger', 'Request failed');
                 },
                 complete() {
                     updatingPassword.value = false;
