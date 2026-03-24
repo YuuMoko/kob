@@ -4,10 +4,13 @@ import com.kob.backend.pojo.User;
 import com.kob.backend.service.impl.utils.UserDetailsImpl;
 import com.kob.backend.service.user.account.LoginService;
 import com.kob.backend.utils.JwtUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -15,18 +18,27 @@ import java.util.Map;
 
 @Service
 public class LoginServiceImpl implements LoginService {
+    private static final Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
     @Override
     public Map<String, String> getToken(String username, String password) {
+        logger.info("Login attempt username={}", username);
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(username, password);
 
-        Authentication authenticate = authenticationManager.authenticate(authenticationToken); // 如果登录失败，会自动处理
+        Authentication authenticate;
+        try {
+            authenticate = authenticationManager.authenticate(authenticationToken); // 如果登录失败，会自动处理
+        } catch (AuthenticationException e) {
+            logger.warn("Login failed username={}, reason={}", username, e.getMessage());
+            throw e;
+        }
         UserDetailsImpl loginUser = (UserDetailsImpl) authenticate.getPrincipal();
         User user = loginUser.getUser();
+        logger.info("Login success userId={}, username={}", user.getId(), user.getUsername());
 
         String jwt = JwtUtil.createJWT(user.getId().toString());
 

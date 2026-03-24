@@ -38,13 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/user/account/token", "/api/user/account/token/").permitAll()
                 .antMatchers(
-                        "/api/user/account/token/",
                         "/api/user/account/register/",
                         "/api/user/account/acwing/web/apply_code/",
                         "/api/user/account/acwing/web/receive_code/").permitAll() // 公开链接
                 .antMatchers("/pk/start/game/", "/pk/receive/bot/move/").hasIpAddress("127.0.0.1")
-                .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);

@@ -6,6 +6,8 @@ import com.kob.backend.service.impl.utils.UserDetailsImpl;
 import com.kob.backend.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +22,8 @@ import java.io.IOException;
 
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);
+
     @Autowired
     private UserMapper userMapper;
 
@@ -39,12 +43,16 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             Claims claims = JwtUtil.parseJWT(token);
             userid = claims.getSubject();
         } catch (Exception e) {
+            logger.warn("JWT parse failed uri={}, remoteAddr={}, reason={}",
+                    request.getRequestURI(), request.getRemoteAddr(), e.getMessage());
             throw new RuntimeException(e);
         }
 
         User user = userMapper.selectById(Integer.parseInt(userid));
 
         if (user == null) {
+            logger.warn("JWT user missing userId={}, uri={}, remoteAddr={}",
+                    userid, request.getRequestURI(), request.getRemoteAddr());
             throw new RuntimeException("User not logged in");
         }
 
@@ -53,6 +61,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 new UsernamePasswordAuthenticationToken(loginUser, null, null);
 
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        logger.debug("JWT auth success userId={}, uri={}", userid, request.getRequestURI());
 
         filterChain.doFilter(request, response);
     }
